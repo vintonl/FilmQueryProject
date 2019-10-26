@@ -97,7 +97,7 @@ public class FilmQueryApp {
 	}
 
 	private void searchByKeyword(Scanner input) {
-		System.out.println("Please enter a keyword: ");
+		System.out.print("Please enter a keyword: ");
 		String keyword = input.nextLine();
 
 		List<Film> films = db.findFilmByKeyword(keyword);
@@ -116,6 +116,7 @@ public class FilmQueryApp {
 				}
 				System.out.println("Actors: " + sb.delete(sb.length() - 2, sb.length() - 1));
 				sb.delete(0, sb.length() - 1);
+				System.out.println();
 			}
 		}
 

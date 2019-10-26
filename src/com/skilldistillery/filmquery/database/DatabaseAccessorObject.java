@@ -54,6 +54,49 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 		return film;
 	}
+	
+	@Override
+	public List<Film> findFilmByKeyword(String keyword) {
+		List<Film> films = new ArrayList<>();
+
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS);) {
+			String sql = "select film.id, film.title, film.description, film.release_year, lang.name,\n" + 
+					" film.rental_duration, film.length, film.rental_rate, film.replacement_cost,\n" + 
+					"  film.rating, film.special_features\n" + 
+					"from film\n" + 
+					"join language lang\n" + 
+					"on film.language_id = lang.id\n" + 
+					"where film.title LIKE ? or film.description LIKE ?;";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, "%" + keyword + "%");
+			stmt.setString(2, "%" + keyword + "%");
+			ResultSet filmResult = stmt.executeQuery();
+			while (filmResult.next()) {
+				Film film = new Film(); // Create the object
+				// Here is our mapping of query columns to our object fields:
+				film.setFilmId(filmResult.getInt("id"));
+				film.setTitle(filmResult.getString("title"));
+				film.setDescription(filmResult.getString("description"));
+				film.setReleaseYear(filmResult.getInt("release_year"));
+				film.setLanguage(filmResult.getString("lang.name"));
+				film.setRentalDuration(filmResult.getInt("rental_duration"));
+				film.setLength(filmResult.getInt("length"));
+				film.setRate(filmResult.getDouble("rental_rate"));
+				film.setReplacementCost(filmResult.getDouble("replacement_cost"));
+				film.setRating(filmResult.getString("rating"));
+				film.setSpecialFeatures(filmResult.getString("special_features"));
+				
+				films.add(film);
+			}
+			filmResult.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return films;
+	}
 
 	@Override
 	public Actor findActorById(int actorId) {

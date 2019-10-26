@@ -68,6 +68,8 @@ public class FilmQueryApp {
 			filmID = input.nextInt();
 		} catch (InputMismatchException e) {
 			input.nextLine();
+			System.err.println("Sorry, input was not a number. Please try again.");
+			System.out.println();
 			startUserInterface(input);
 		} finally {
 			input.nextLine();

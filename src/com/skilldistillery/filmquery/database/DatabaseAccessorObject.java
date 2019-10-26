@@ -31,8 +31,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			stmt.setInt(1, filmId);
 			ResultSet filmResult = stmt.executeQuery();
 			if (filmResult.next()) {
-				film = new Film(); // Create the object
-				// Here is our mapping of query columns to our object fields:
+				film = new Film();
+				
 				film.setFilmId(filmResult.getInt("id"));
 				film.setTitle(filmResult.getString("title"));
 				film.setDescription(filmResult.getString("description"));
@@ -72,8 +72,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			stmt.setString(2, "%" + keyword + "%");
 			ResultSet filmResult = stmt.executeQuery();
 			while (filmResult.next()) {
-				Film film = new Film(); // Create the object
-				// Here is our mapping of query columns to our object fields:
+				Film film = new Film(); 
+				
 				film.setFilmId(filmResult.getInt("id"));
 				film.setTitle(filmResult.getString("title"));
 				film.setDescription(filmResult.getString("description"));

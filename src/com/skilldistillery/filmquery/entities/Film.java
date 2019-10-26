@@ -225,11 +225,10 @@ public class Film {
 	}
 
 	public String toStringFilmByID() {
-//		title, year, rating, and description
 		StringBuilder builder = new StringBuilder();
-		builder.append("Film ID: ").append(filmId).append(",\n Title: ").append(title).append(",\n Release Year: ")
-				.append(releaseYear).append(",\n Description:").append(description).append(",\n Rating: ")
-				.append(rating).append(".");
+		builder.append("Film ID: ").append(filmId).append("\n Title: ").append(title).append("\n Release Year: ")
+				.append(releaseYear).append("\n Description: ").append(description).append("\n Rating: ")
+				.append(rating);
 		return builder.toString();
 	}
 

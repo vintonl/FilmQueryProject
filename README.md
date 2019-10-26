@@ -17,7 +17,7 @@ The Film Query Application will then start the search process of the database an
 
 ### Technologies used:
 
-Java EE, Maven, SQL, MySQL, Eclipse, Atom, Git, and Github.
+Java EE, Maven, SQL, MySQL, Apache, Eclipse, Atom, Git, and Github.
 
 ### Topics implemented:
 

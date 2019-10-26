@@ -33,18 +33,19 @@ public class FilmQueryApp {
 	}
 
 	private void startUserInterface(Scanner input) {
-
 		System.out.println("Please choose from the following?");
 		System.out.println("1. Look up a film by its id.");
 		System.out.println("2. Look up a film by a search keyword.");
 		System.out.println("3. Exit the application.");
 		System.out.print("Enter here: ");
+		
 		int choice = 0;
 		try {
 			choice = input.nextInt();
 		} catch (InputMismatchException e) {
+		} finally {
+			input.nextLine();
 		}
-		input.nextLine();
 
 		switch (choice) {
 		case 1:
@@ -68,13 +69,15 @@ public class FilmQueryApp {
 	private void searchFilmByID(Scanner input) {
 		System.out.println("Enter film id: ");
 		int filmID = 0;
+		
 		try {
-			input.nextInt();
+			filmID = input.nextInt();
 		} catch (InputMismatchException e) {
 			input.nextLine();
 			startUserInterface(input);
+		} finally {
+			input.nextLine();
 		}
-		input.nextLine();
 
 		Film film = db.findFilmById(filmID);
 
@@ -83,10 +86,25 @@ public class FilmQueryApp {
 		} else {
 			System.out.println(film);
 		}
+		startUserInterface(input);
 	}
 
 	private void searchByKeyword(Scanner input) {
+		System.out.println("Enter film id: ");
+		String keyword = "";
 		
+		try {
+			keyword = input.nextLine();
+		} catch (InputMismatchException e) {
+			input.nextLine();
+			startUserInterface(input);
+		} finally {
+			input.nextLine();
+		}
+		
+		
+		
+		startUserInterface(input);
 	}
 
 }

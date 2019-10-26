@@ -24,9 +24,16 @@ class DatabaseAccessTests {
 
   @Test
   @DisplayName ("Test null getFilmById with invalid id returns null")
-  void test_getFilmById_with_invalid_id_returns_null() {
-    Film f = db.findFilmById(-42);
+  void test1() {
+    Film f = db.findFilmById(-1);
     assertNull(f);
+  }
+  
+  @Test
+  @DisplayName ("Test not null getFilmById with valid id returns data")
+  void test2() {
+	  Film f = db.findFilmById(1);
+	  assertNotNull(f);
   }
 
 }

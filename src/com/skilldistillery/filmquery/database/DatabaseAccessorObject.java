@@ -109,9 +109,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			while (actorResult.next()) {
 				actor = new Actor();
 
-				actor.setId(actorResult.getInt("id"));
-				actor.setFirstName(actorResult.getString("first_name"));
-				actor.setLastName(actorResult.getString("last_name"));
+				actor.setId(actorResult.getInt("actor.id"));
+				actor.setFirstName(actorResult.getString("actor.first_name"));
+				actor.setLastName(actorResult.getString("actor.last_name"));
 
 				actors.add(actor);
 			}

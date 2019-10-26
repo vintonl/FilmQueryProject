@@ -41,9 +41,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				film.setReplacementCost(filmResult.getDouble("film.replacement_cost"));
 				film.setRating(filmResult.getString("film.rating"));
 				film.setSpecialFeatures(filmResult.getString("film.special_features"));
-
 				film.setActors(findActorsByFilmId(film.getFilmId()));
-
 			}
 			filmResult.close();
 			stmt.close();
@@ -82,7 +80,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				film.setReplacementCost(filmResult.getDouble("film.replacement_cost"));
 				film.setRating(filmResult.getString("film.rating"));
 				film.setSpecialFeatures(filmResult.getString("film.special_features"));
-
 				film.setActors(findActorsByFilmId(film.getFilmId()));
 
 				films.add(film);
@@ -110,8 +107,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			stmt.setInt(1, filmId);
 			ResultSet actorResult = stmt.executeQuery();
 			while (actorResult.next()) {
-				actor = new Actor(); // Create the object
-				// Here is our mapping of query columns to our object fields:
+				actor = new Actor();
+
 				actor.setId(actorResult.getInt("id"));
 				actor.setFirstName(actorResult.getString("first_name"));
 				actor.setLastName(actorResult.getString("last_name"));
@@ -135,12 +132,12 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			stmt.setInt(1, actorId);
 			ResultSet actorResult = stmt.executeQuery();
 			if (actorResult.next()) {
-				actor = new Actor(); // Create the object
-				// Here is our mapping of query columns to our object fields:
+				actor = new Actor();
+
 				actor.setId(actorResult.getInt("id"));
 				actor.setFirstName(actorResult.getString("first_name"));
 				actor.setLastName(actorResult.getString("last_name"));
-				actor.setFilms(findFilmsByActorId(actorId)); // An Actor has Films
+				actor.setFilms(findFilmsByActorId(actorId));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

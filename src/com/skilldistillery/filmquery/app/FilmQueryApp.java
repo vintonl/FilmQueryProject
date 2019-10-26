@@ -87,6 +87,11 @@ public class FilmQueryApp {
 	}
 
 	private void searchByKeyword(Scanner input) {
+//		If the user looks up a film by search keyword, they are prompted to enter it. 
+//		If no matching films are found, they see a message saying so. 
+//		Otherwise, they see a list of films for which the search term was found anywhere in the title or description, 
+//			with each film displayed exactly as it is for User Story 2.
+		
 		System.out.println("Please enter keyword: ");
 		String keyword = "";
 
@@ -99,6 +104,10 @@ public class FilmQueryApp {
 			input.nextLine();
 		}
 
+		
+		
+		
+		
 		startUserInterface(input);
 	}
 

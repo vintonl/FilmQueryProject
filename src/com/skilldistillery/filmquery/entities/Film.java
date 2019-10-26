@@ -228,7 +228,7 @@ public class Film {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Film ID: ").append(filmId).append("\n Title: ").append(title).append("\n Release Year: ")
 				.append(releaseYear).append("\n Description: ").append(description).append("\n Rating: ")
-				.append(rating);
+				.append(rating).append(",\n Language: ").append(language);
 		return builder.toString();
 	}
 

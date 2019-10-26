@@ -68,7 +68,7 @@ public class FilmQueryApp {
 			filmID = input.nextInt();
 		} catch (InputMismatchException e) {
 			input.nextLine();
-			System.err.println("Sorry, input was not a number. Please try again.");
+			System.err.println("Sorry, your input was not a number. Please try again.");
 			System.out.println();
 			startUserInterface(input);
 		} finally {
@@ -76,40 +76,34 @@ public class FilmQueryApp {
 		}
 
 		Film film = db.findFilmById(filmID);
-		
+
 		System.out.println();
-		
+
 		if (film == null) {
 			System.out.println("Sorry, the Film ID was not found.");
 		} else {
 			System.out.println(film.toStringFilmByID());
 		}
-		
+
 		System.out.println();
 		startUserInterface(input);
 	}
 
 	private void searchByKeyword(Scanner input) {
-//		If the user looks up a film by search keyword, they are prompted to enter it. 
-//		If no matching films are found, they see a message saying so. 
-//		Otherwise, they see a list of films for which the search term was found anywhere in the title or description, 
-//			with each film displayed exactly as it is for User Story 2.
-		
-		System.out.println("Please enter keyword: ");
+		System.out.println("Please enter a keyword: ");
 		String keyword = input.nextLine();
 
-		List<Film> films= db.findFilmByKeyword(keyword);
-		
+		List<Film> films = db.findFilmByKeyword(keyword);
+
 		if (films.size() == 0) {
-			System.out.println("Sorry, the keyword was not found.");
+			System.out.println("Sorry, the keyword you input was not found.");
 		} else {
 			for (Film film : films) {
 				System.out.println(film.toStringFilmByID());
 			}
 		}
-		
+
 		System.out.println();
-		
 		startUserInterface(input);
 	}
 

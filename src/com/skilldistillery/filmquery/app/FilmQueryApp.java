@@ -101,12 +101,22 @@ public class FilmQueryApp {
 		String keyword = input.nextLine();
 
 		List<Film> films = db.findFilmByKeyword(keyword);
+		
+		List<Actor> actors = null;
+		StringBuilder sb = new StringBuilder();
+		
 
 		if (films.size() == 0) {
 			System.out.println("Sorry, the keyword you input was not found.");
 		} else {
 			for (Film film : films) {
 				System.out.println(film.toStringFilmByID());
+				actors = db.findActorsByFilmId(film.getFilmId());
+				for (Actor actor : actors) {
+					sb.append(actor.getFirstName()).append(" ").append(actor.getLastName()).append(", ");
+				}
+				System.out.println("Actors: " + sb.delete(sb.length()-2, sb.length()-1));
+				sb.delete(0, sb.length()-1);
 			}
 		}
 

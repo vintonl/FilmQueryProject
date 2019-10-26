@@ -84,7 +84,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				film.setSpecialFeatures(filmResult.getString("film.special_features"));
 
 				film.setActors(findActorsByFilmId(film.getFilmId()));
-				
+
 				films.add(film);
 			}
 			filmResult.close();
@@ -103,11 +103,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		Actor actor = null;
 
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS);) {
-			String sql = "SELECT actor.id, actor.first_name, actor.last_name \n" + 
-					"FROM actor JOIN film_actor \n" + 
-					"ON actor.id = film_actor.actor_id \n" + 
-					"JOIN film ON film_actor.film_id = film.id \n" + 
-					"WHERE film.id = ?";
+			String sql = "SELECT actor.id, actor.first_name, actor.last_name \n" + "FROM actor JOIN film_actor \n"
+					+ "ON actor.id = film_actor.actor_id \n" + "JOIN film ON film_actor.film_id = film.id \n"
+					+ "WHERE film.id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, filmId);
 			ResultSet actorResult = stmt.executeQuery();
@@ -147,7 +145,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		 
+
 		return actor;
 	}
 

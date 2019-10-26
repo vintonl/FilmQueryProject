@@ -117,7 +117,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				actor.setId(actorResult.getInt("id"));
 				actor.setFirstName(actorResult.getString("first_name"));
 				actor.setLastName(actorResult.getString("last_name"));
-				actor.setFilms(findFilmsByActorId(filmId)); // An Actor has Films
 
 				actors.add(actor);
 			}
@@ -148,7 +147,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		// ...
+		 
 		return actor;
 	}
 

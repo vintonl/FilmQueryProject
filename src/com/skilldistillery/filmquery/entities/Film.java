@@ -36,7 +36,7 @@ public class Film {
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
 	}
-	
+
 	public Film(int filmId, String title, String description, Integer releaseYear, int languageID, int rentalDuration,
 			double rate, int length, double replacementCost, String rating, String specialFeatures) {
 		super();
@@ -236,23 +236,23 @@ public class Film {
 		return true;
 	}
 
-	@Override
-	public String toString() {
+	public String toStringFilmByID() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Film Id: ").append(filmId).append(",\n Title: ").append(title).append(",\n Description:")
-				.append(description).append(",\n Release Year: ").append(releaseYear).append(",\n Language: ")
-				.append(language).append(",\n Rental Duration: ").append(rentalDuration).append(" days,\n Length: ")
-				.append(length).append(" minutes,\n Rental Rate: $").append(rate).append(",\n Replacement Cost: $")
-				.append(replacementCost).append(",\n Rating: ").append(rating).append(",\n Special Features: ")
-				.append(specialFeatures).append(",\n Actors: ").append(actors).append(".");
+		builder.append("Film ID: ").append(filmId).append("\nTitle: ").append(title).append("\nRelease Year: ")
+				.append(releaseYear).append("\nRating: ").append(rating).append("\nDescription: ").append(description)
+				.append(",\nLanguage: ").append(language);
 		return builder.toString();
 	}
 
-	public String toStringFilmByID() {
+	@Override
+	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Film ID: ").append(filmId).append("\n Title: ").append(title).append("\n Release Year: ")
-				.append(releaseYear).append("\n Rating: ").append(rating).append("\n Description: ").append(description)
-				.append(",\n Language: ").append(language).append(",\n Actors: ").append(actors);
+		builder.append("Film [filmId=").append(filmId).append(", title=").append(title).append(", description=")
+				.append(description).append(", releaseYear=").append(releaseYear).append(", language=").append(language)
+				.append(", languageID=").append(languageID).append(", rentalDuration=").append(rentalDuration)
+				.append(", length=").append(length).append(", rate=").append(rate).append(", replacementCost=")
+				.append(replacementCost).append(", rating=").append(rating).append(", specialFeatures=")
+				.append(specialFeatures).append(", actors=").append(actors).append("]");
 		return builder.toString();
 	}
 

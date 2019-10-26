@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessor;
 import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
+import com.skilldistillery.filmquery.entities.Actor;
 import com.skilldistillery.filmquery.entities.Film;
 
 public class FilmQueryApp {
@@ -76,15 +77,19 @@ public class FilmQueryApp {
 		}
 
 		Film film = db.findFilmById(filmID);
+		List<Actor> actors = db.findActorsByFilmId(filmID);
+		StringBuilder sb = new StringBuilder();
 		
-
 		System.out.println();
 
 		if (film == null) {
 			System.out.println("Sorry, the Film ID was not found.");
 		} else {
 			System.out.println(film.toStringFilmByID());
-			
+			for (Actor actor : actors) {
+				sb.append(actor.getFirstName()).append(" ").append(actor.getLastName()).append(", ");
+			}
+			System.out.println("Actors: " + sb.delete(sb.length()-2, sb.length()-1));
 		}
 
 		System.out.println();

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.skilldistillery.filmquery.entities.Film;
@@ -22,6 +23,7 @@ class DatabaseAccessTests {
   }
 
   @Test
+  @DisplayName ("Test null getFilmById with invalid id returns null")
   void test_getFilmById_with_invalid_id_returns_null() {
     Film f = db.findFilmById(-42);
     assertNull(f);

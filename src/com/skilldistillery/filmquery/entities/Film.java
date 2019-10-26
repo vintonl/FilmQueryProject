@@ -1,44 +1,59 @@
 package com.skilldistillery.filmquery.entities;
 
+import java.util.List;
+
 public class Film {
-	private int id;
+	private int filmId;
 	private String title;
 	private String description;
 	private Integer releaseYear;
 	private int languageID;
-	private int rentalDureantion;
+	private int rentalDuration;
 	private int length;
-	private double replaementCost;
+	private double rate;
+	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
 //	list of actors
-	
+	private List<Actor> actors;
 
 	public Film() {
 		super();
 	}
 
-	public Film(int id, String title, String description, Integer releaseYear, int languageID, int rentalDureantion,
-			int length, double replaementCost, String rating, String specialFeatures) {
+	public Film(int filmId, String title, String description, Integer releaseYear, int languageID, int rentalDuration,
+			double rate, int length, double replacementCost, String rating, String specialFeatures) {
 		super();
-		this.id = id;
+		this.filmId = filmId;
 		this.title = title;
 		this.description = description;
 		this.releaseYear = releaseYear;
 		this.languageID = languageID;
-		this.rentalDureantion = rentalDureantion;
+		this.rentalDuration = rentalDuration;
+		this.rate = rate;
 		this.length = length;
-		this.replaementCost = replaementCost;
+		this.replacementCost = replacementCost;
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
 	}
 
-	public int getId() {
-		return id;
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Film [id=").append(filmId).append(", title=").append(title).append(", description=")
+				.append(description).append(", releaseYear=").append(releaseYear).append(", languageID=")
+				.append(languageID).append(", rentalDureantion=").append(rentalDuration).append(", length=")
+				.append(length).append(", replaementCost=").append(replacementCost).append(", rating=").append(rating)
+				.append(", specialFeatures=").append(specialFeatures).append("]");
+		return builder.toString();
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public int getFilmId() {
+		return filmId;
+	}
+
+	public void setFilmId(int filmId) {
+		this.filmId = filmId;
 	}
 
 	public String getTitle() {
@@ -73,12 +88,12 @@ public class Film {
 		this.languageID = languageID;
 	}
 
-	public int getRentalDureantion() {
-		return rentalDureantion;
+	public int getRentalDuration() {
+		return rentalDuration;
 	}
 
-	public void setRentalDureantion(int rentalDureantion) {
-		this.rentalDureantion = rentalDureantion;
+	public void setRentalDuration(int rentalDuration) {
+		this.rentalDuration = rentalDuration;
 	}
 
 	public int getLength() {
@@ -89,12 +104,20 @@ public class Film {
 		this.length = length;
 	}
 
-	public double getReplaementCost() {
-		return replaementCost;
+	public double getRate() {
+		return rate;
 	}
 
-	public void setReplaementCost(double replaementCost) {
-		this.replaementCost = replaementCost;
+	public void setRate(double rate) {
+		this.rate = rate;
+	}
+
+	public double getReplacementCost() {
+		return replacementCost;
+	}
+
+	public void setReplacementCost(double replacementCost) {
+		this.replacementCost = replacementCost;
 	}
 
 	public String getRating() {
@@ -114,14 +137,81 @@ public class Film {
 	}
 
 	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Film [id=").append(id).append(", title=").append(title).append(", description=")
-				.append(description).append(", releaseYear=").append(releaseYear).append(", languageID=")
-				.append(languageID).append(", rentalDureantion=").append(rentalDureantion).append(", length=")
-				.append(length).append(", replaementCost=").append(replaementCost).append(", rating=").append(rating)
-				.append(", specialFeatures=").append(specialFeatures).append("]");
-		return builder.toString();
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + filmId;
+		result = prime * result + languageID;
+		result = prime * result + length;
+		long temp;
+		temp = Double.doubleToLongBits(rate);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
+		result = prime * result + ((releaseYear == null) ? 0 : releaseYear.hashCode());
+		result = prime * result + rentalDuration;
+		temp = Double.doubleToLongBits(replacementCost);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((specialFeatures == null) ? 0 : specialFeatures.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Film other = (Film) obj;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (filmId != other.filmId)
+			return false;
+		if (languageID != other.languageID)
+			return false;
+		if (length != other.length)
+			return false;
+		if (Double.doubleToLongBits(rate) != Double.doubleToLongBits(other.rate))
+			return false;
+		if (rating == null) {
+			if (other.rating != null)
+				return false;
+		} else if (!rating.equals(other.rating))
+			return false;
+		if (releaseYear == null) {
+			if (other.releaseYear != null)
+				return false;
+		} else if (!releaseYear.equals(other.releaseYear))
+			return false;
+		if (rentalDuration != other.rentalDuration)
+			return false;
+		if (Double.doubleToLongBits(replacementCost) != Double.doubleToLongBits(other.replacementCost))
+			return false;
+		if (specialFeatures == null) {
+			if (other.specialFeatures != null)
+				return false;
+		} else if (!specialFeatures.equals(other.specialFeatures))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
+	}
+
+	public List<Actor> getActors() {
+		return actors;
+	}
+
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
 	}
 
 }

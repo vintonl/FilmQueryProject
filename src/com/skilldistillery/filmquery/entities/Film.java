@@ -7,7 +7,7 @@ public class Film {
 	private String title;
 	private String description;
 	private Integer releaseYear;
-	private int languageID;
+	private String language;
 	private int rentalDuration;
 	private int length;
 	private double rate;
@@ -28,24 +28,13 @@ public class Film {
 		this.title = title;
 		this.description = description;
 		this.releaseYear = releaseYear;
-		this.languageID = languageID;
+		this.language = language;
 		this.rentalDuration = rentalDuration;
 		this.rate = rate;
 		this.length = length;
 		this.replacementCost = replacementCost;
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Film [id=").append(filmId).append(", title=").append(title).append(", description=")
-				.append(description).append(", releaseYear=").append(releaseYear).append(", languageID=")
-				.append(languageID).append(", rentalDureantion=").append(rentalDuration).append(", length=")
-				.append(length).append(", replaementCost=").append(replacementCost).append(", rating=").append(rating)
-				.append(", specialFeatures=").append(specialFeatures).append("]");
-		return builder.toString();
 	}
 
 	public int getFilmId() {
@@ -80,12 +69,12 @@ public class Film {
 		this.releaseYear = releaseYear;
 	}
 
-	public int getLanguageID() {
-		return languageID;
+	public String getLanguage() {
+		return language;
 	}
 
-	public void setLanguageID(int languageID) {
-		this.languageID = languageID;
+	public void setLanguage(String string) {
+		this.language = string;
 	}
 
 	public int getRentalDuration() {
@@ -136,13 +125,22 @@ public class Film {
 		this.specialFeatures = specialFeatures;
 	}
 
+	public List<Actor> getActors() {
+		return actors;
+	}
+
+	public void setActors(List<Actor> actors) {
+		this.actors = actors;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((actors == null) ? 0 : actors.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + filmId;
-		result = prime * result + languageID;
+		result = prime * result + ((language == null) ? 0 : language.hashCode());
 		result = prime * result + length;
 		long temp;
 		temp = Double.doubleToLongBits(rate);
@@ -166,6 +164,11 @@ public class Film {
 		if (getClass() != obj.getClass())
 			return false;
 		Film other = (Film) obj;
+		if (actors == null) {
+			if (other.actors != null)
+				return false;
+		} else if (!actors.equals(other.actors))
+			return false;
 		if (description == null) {
 			if (other.description != null)
 				return false;
@@ -173,7 +176,10 @@ public class Film {
 			return false;
 		if (filmId != other.filmId)
 			return false;
-		if (languageID != other.languageID)
+		if (language == null) {
+			if (other.language != null)
+				return false;
+		} else if (!language.equals(other.language))
 			return false;
 		if (length != other.length)
 			return false;
@@ -206,12 +212,16 @@ public class Film {
 		return true;
 	}
 
-	public List<Actor> getActors() {
-		return actors;
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Film Id=").append(filmId).append(",\n title=").append(title).append(",\n description=")
+				.append(description).append(",\n releaseYear=").append(releaseYear).append(",\n language=").append(language)
+				.append(",\n rentalDuration=").append(rentalDuration).append(",\n length=").append(length).append(",\n rate=")
+				.append(rate).append(",\n replacementCost=").append(replacementCost).append(",\n rating=").append(rating)
+				.append(",\n specialFeatures=").append(specialFeatures).append(",\n actors=").append(actors).append(".");
+		return builder.toString();
 	}
 
-	public void setActors(List<Actor> actors) {
-		this.actors = actors;
-	}
-
+	
 }

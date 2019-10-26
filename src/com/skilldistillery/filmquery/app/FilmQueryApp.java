@@ -100,6 +100,7 @@ public class FilmQueryApp {
 			startUserInterface(input);
 		} finally {
 			input.nextLine();
+	
 		}
 		
 		

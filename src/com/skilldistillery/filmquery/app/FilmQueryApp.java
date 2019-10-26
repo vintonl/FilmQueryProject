@@ -76,6 +76,7 @@ public class FilmQueryApp {
 		}
 
 		Film film = db.findFilmById(filmID);
+		
 
 		System.out.println();
 
@@ -83,6 +84,7 @@ public class FilmQueryApp {
 			System.out.println("Sorry, the Film ID was not found.");
 		} else {
 			System.out.println(film.toStringFilmByID());
+			
 		}
 
 		System.out.println();

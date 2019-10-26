@@ -8,20 +8,20 @@ public class Film {
 	private String description;
 	private Integer releaseYear;
 	private String language;
+	private int languageID;
 	private int rentalDuration;
 	private int length;
 	private double rate;
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
-//	list of actors
 	private List<Actor> actors;
 
 	public Film() {
 		super();
 	}
 
-	public Film(int filmId, String title, String description, Integer releaseYear, int languageID, int rentalDuration,
+	public Film(int filmId, String title, String description, Integer releaseYear, String language, int rentalDuration,
 			double rate, int length, double replacementCost, String rating, String specialFeatures) {
 		super();
 		this.filmId = filmId;
@@ -29,6 +29,22 @@ public class Film {
 		this.description = description;
 		this.releaseYear = releaseYear;
 		this.language = language;
+		this.rentalDuration = rentalDuration;
+		this.rate = rate;
+		this.length = length;
+		this.replacementCost = replacementCost;
+		this.rating = rating;
+		this.specialFeatures = specialFeatures;
+	}
+	
+	public Film(int filmId, String title, String description, Integer releaseYear, int languageID, int rentalDuration,
+			double rate, int length, double replacementCost, String rating, String specialFeatures) {
+		super();
+		this.filmId = filmId;
+		this.title = title;
+		this.description = description;
+		this.releaseYear = releaseYear;
+		this.languageID = languageID;
 		this.rentalDuration = rentalDuration;
 		this.rate = rate;
 		this.length = length;
@@ -133,6 +149,14 @@ public class Film {
 		this.actors = actors;
 	}
 
+	public int getLanguageID() {
+		return languageID;
+	}
+
+	public void setLanguageID(int languageID) {
+		this.languageID = languageID;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -228,7 +252,7 @@ public class Film {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Film ID: ").append(filmId).append("\n Title: ").append(title).append("\n Release Year: ")
 				.append(releaseYear).append("\n Rating: ").append(rating).append("\n Description: ").append(description)
-				.append(",\n Language: ").append(language);
+				.append(",\n Language: ").append(language).append(",\n Actors: ").append(actors);
 		return builder.toString();
 	}
 

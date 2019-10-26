@@ -55,10 +55,17 @@ public class Actor {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Actor [id=").append(id).append(", firstName=").append(firstName).append(", lastName=")
-				.append(lastName).append(", films=").append(films).append("]");
+		builder.append(firstName).append(" ").append(lastName);
 		return builder.toString();
 	}
+	
+//	@Override
+//	public String toString() {
+//		StringBuilder builder = new StringBuilder();
+//		builder.append("Actor [id=").append(id).append(", firstName=").append(firstName).append(", lastName=")
+//		.append(lastName).append(", films=").append(films).append("]");
+//		return builder.toString();
+//	}
 
 	@Override
 	public int hashCode() {
@@ -99,7 +106,5 @@ public class Actor {
 			return false;
 		return true;
 	}
-	
-	
 
 }

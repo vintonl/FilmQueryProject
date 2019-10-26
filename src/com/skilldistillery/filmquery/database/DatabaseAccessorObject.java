@@ -22,28 +22,28 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		Film film = null;
 
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS);) {
-			String sql = "select film.id, film.title, film.description, film.release_year, lang.name, film.rental_duration, film.length, film.rental_rate, film.replacement_cost, film.rating, film.special_features\n" + 
-					"from film\n" + 
-					"join language lang\n" + 
-					"on film.language_id = lang.id\n" + 
-					"where film.id = ?";
+			String sql = "select film.id, film.title, film.description, film.release_year, lang.name, film.rental_duration, film.length, film.rental_rate, film.replacement_cost, film.rating, film.special_features\n"
+					+ "from film\n" + "join language lang\n" + "on film.language_id = lang.id\n" + "where film.id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, filmId);
 			ResultSet filmResult = stmt.executeQuery();
 			if (filmResult.next()) {
 				film = new Film();
-				
-				film.setFilmId(filmResult.getInt("id"));
-				film.setTitle(filmResult.getString("title"));
-				film.setDescription(filmResult.getString("description"));
-				film.setReleaseYear(filmResult.getInt("release_year"));
+
+				film.setFilmId(filmResult.getInt("film.id"));
+				film.setTitle(filmResult.getString("film.title"));
+				film.setDescription(filmResult.getString("film.description"));
+				film.setReleaseYear(filmResult.getInt("film.release_year"));
 				film.setLanguage(filmResult.getString("lang.name"));
-				film.setRentalDuration(filmResult.getInt("rental_duration"));
-				film.setLength(filmResult.getInt("length"));
-				film.setRate(filmResult.getDouble("rental_rate"));
-				film.setReplacementCost(filmResult.getDouble("replacement_cost"));
-				film.setRating(filmResult.getString("rating"));
-				film.setSpecialFeatures(filmResult.getString("special_features"));
+				film.setRentalDuration(filmResult.getInt("film.rental_duration"));
+				film.setLength(filmResult.getInt("film.length"));
+				film.setRate(filmResult.getDouble("film.rental_rate"));
+				film.setReplacementCost(filmResult.getDouble("film.replacement_cost"));
+				film.setRating(filmResult.getString("film.rating"));
+				film.setSpecialFeatures(filmResult.getString("film.special_features"));
+
+				film.setActors(findActorsByFilmId(film.getFilmId()));
+
 			}
 			filmResult.close();
 			stmt.close();
@@ -54,37 +54,36 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 		return film;
 	}
-	
+
 	@Override
 	public List<Film> findFilmByKeyword(String keyword) {
 		List<Film> films = new ArrayList<>();
 
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS);) {
-			String sql = "select film.id, film.title, film.description, film.release_year, lang.name,\n" + 
-					" film.rental_duration, film.length, film.rental_rate, film.replacement_cost,\n" + 
-					"  film.rating, film.special_features\n" + 
-					"from film\n" + 
-					"join language lang\n" + 
-					"on film.language_id = lang.id\n" + 
-					"where film.title LIKE ? or film.description LIKE ?;";
+			String sql = "select film.id, film.title, film.description, film.release_year, lang.name,\n"
+					+ " film.rental_duration, film.length, film.rental_rate, film.replacement_cost,\n"
+					+ "  film.rating, film.special_features\n" + "from film\n" + "join language lang\n"
+					+ "on film.language_id = lang.id\n" + "where film.title LIKE ? or film.description LIKE ?;";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, "%" + keyword + "%");
 			stmt.setString(2, "%" + keyword + "%");
 			ResultSet filmResult = stmt.executeQuery();
 			while (filmResult.next()) {
-				Film film = new Film(); 
-				
-				film.setFilmId(filmResult.getInt("id"));
-				film.setTitle(filmResult.getString("title"));
-				film.setDescription(filmResult.getString("description"));
-				film.setReleaseYear(filmResult.getInt("release_year"));
+				Film film = new Film();
+
+				film.setFilmId(filmResult.getInt("film.id"));
+				film.setTitle(filmResult.getString("film.title"));
+				film.setDescription(filmResult.getString("film.description"));
+				film.setReleaseYear(filmResult.getInt("film.release_year"));
 				film.setLanguage(filmResult.getString("lang.name"));
-				film.setRentalDuration(filmResult.getInt("rental_duration"));
-				film.setLength(filmResult.getInt("length"));
-				film.setRate(filmResult.getDouble("rental_rate"));
-				film.setReplacementCost(filmResult.getDouble("replacement_cost"));
-				film.setRating(filmResult.getString("rating"));
-				film.setSpecialFeatures(filmResult.getString("special_features"));
+				film.setRentalDuration(filmResult.getInt("film.rental_duration"));
+				film.setLength(filmResult.getInt("film.length"));
+				film.setRate(filmResult.getDouble("film.rental_rate"));
+				film.setReplacementCost(filmResult.getDouble("film.replacement_cost"));
+				film.setRating(filmResult.getString("film.rating"));
+				film.setSpecialFeatures(filmResult.getString("film.special_features"));
+
+				film.setActors(findActorsByFilmId(film.getFilmId()));
 				
 				films.add(film);
 			}
@@ -96,6 +95,37 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 
 		return films;
+	}
+
+	@Override
+	public List<Actor> findActorsByFilmId(int filmId) {
+		List<Actor> actors = new ArrayList<>();
+		Actor actor = null;
+
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS);) {
+			String sql = "SELECT actor.id, actor.first_name, actor.last_name \n" + 
+					"FROM actor JOIN film_actor \n" + 
+					"ON actor.id = film_actor.actor_id \n" + 
+					"JOIN film ON film_actor.film_id = film.id \n" + 
+					"WHERE film.id = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, filmId);
+			ResultSet actorResult = stmt.executeQuery();
+			while (actorResult.next()) {
+				actor = new Actor(); // Create the object
+				// Here is our mapping of query columns to our object fields:
+				actor.setId(actorResult.getInt("id"));
+				actor.setFirstName(actorResult.getString("first_name"));
+				actor.setLastName(actorResult.getString("last_name"));
+				actor.setFilms(findFilmsByActorId(filmId)); // An Actor has Films
+
+				actors.add(actor);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return actors;
 	}
 
 	@Override
@@ -120,32 +150,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 		// ...
 		return actor;
-	}
-
-	@Override
-	public List<Actor> findActorsByFilmId(int filmId) {
-		Actor actor = null;
-		List<Actor> actors = new ArrayList<>();
-		// ...
-		try (Connection conn = DriverManager.getConnection(URL, USER, PASS);) {
-			String sql = "SELECT id, first_name, last_name FROM actor WHERE id = ?";
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, filmId);
-			ResultSet actorResult = stmt.executeQuery();
-			if (actorResult.next()) {
-				actor = new Actor(); // Create the object
-				// Here is our mapping of query columns to our object fields:
-				actor.setId(actorResult.getInt("id"));
-				actor.setFirstName(actorResult.getString("first_name"));
-				actor.setLastName(actorResult.getString("last_name"));
-				actor.setFilms(findFilmsByActorId(filmId)); // An Actor has Films
-
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		// ...
-		return actors;
 	}
 
 	@Override
@@ -184,5 +188,4 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		}
 		return films;
 	}
-
 }

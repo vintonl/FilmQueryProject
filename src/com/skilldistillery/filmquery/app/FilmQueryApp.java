@@ -48,7 +48,7 @@ public class FilmQueryApp {
 			searchByKeyword(input);
 			break;
 		case 3:
-			System.out.println("Goodbye");
+			System.out.println("Thank you, and have a great one.");
 			System.exit(0);
 			break;
 		default:

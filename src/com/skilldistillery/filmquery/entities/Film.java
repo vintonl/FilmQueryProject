@@ -215,11 +215,11 @@ public class Film {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Film Id=").append(filmId).append(",\n title=").append(title).append(",\n description=")
-				.append(description).append(",\n releaseYear=").append(releaseYear).append(",\n language=").append(language)
-				.append(",\n rentalDuration=").append(rentalDuration).append(",\n length=").append(length).append(",\n rate=")
-				.append(rate).append(",\n replacementCost=").append(replacementCost).append(",\n rating=").append(rating)
-				.append(",\n specialFeatures=").append(specialFeatures).append(",\n actors=").append(actors).append(".");
+		builder.append("Film Id: ").append(filmId).append(",\n Title: ").append(title).append(",\n Description:")
+				.append(description).append(",\n Release Year: ").append(releaseYear).append(",\n Language: ").append(language)
+				.append(",\n Rental Duration: ").append(rentalDuration).append(" days,\n Length: ").append(length).append(" minutes,\n Rental Rate: $")
+				.append(rate).append(",\n Replacement Cost: $").append(replacementCost).append(",\n Rating: ").append(rating)
+				.append(",\n Special Features: ").append(specialFeatures).append(",\n Actors: ").append(actors).append(".");
 		return builder.toString();
 	}
 

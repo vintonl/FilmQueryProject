@@ -216,12 +216,21 @@ public class Film {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Film Id: ").append(filmId).append(",\n Title: ").append(title).append(",\n Description:")
-				.append(description).append(",\n Release Year: ").append(releaseYear).append(",\n Language: ").append(language)
-				.append(",\n Rental Duration: ").append(rentalDuration).append(" days,\n Length: ").append(length).append(" minutes,\n Rental Rate: $")
-				.append(rate).append(",\n Replacement Cost: $").append(replacementCost).append(",\n Rating: ").append(rating)
-				.append(",\n Special Features: ").append(specialFeatures).append(",\n Actors: ").append(actors).append(".");
+				.append(description).append(",\n Release Year: ").append(releaseYear).append(",\n Language: ")
+				.append(language).append(",\n Rental Duration: ").append(rentalDuration).append(" days,\n Length: ")
+				.append(length).append(" minutes,\n Rental Rate: $").append(rate).append(",\n Replacement Cost: $")
+				.append(replacementCost).append(",\n Rating: ").append(rating).append(",\n Special Features: ")
+				.append(specialFeatures).append(",\n Actors: ").append(actors).append(".");
 		return builder.toString();
 	}
 
-	
+	public String toStringFilmByID() {
+//		title, year, rating, and description
+		StringBuilder builder = new StringBuilder();
+		builder.append("Film ID: ").append(filmId).append(",\n Title: ").append(title).append(",\n Release Year: ")
+				.append(releaseYear).append(",\n Description:").append(description).append(",\n Rating: ")
+				.append(rating).append(".");
+		return builder.toString();
+	}
+
 }

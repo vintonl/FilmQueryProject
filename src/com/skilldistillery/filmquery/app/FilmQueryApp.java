@@ -53,7 +53,7 @@ public class FilmQueryApp {
 			System.exit(0);
 			break;
 		default:
-			System.err.println("Sorry, please try again.");
+			System.err.println("Sorry, input did not match 1, 3, or 3. Please try again.");
 			startUserInterface(input);
 			break;
 		}
@@ -61,7 +61,7 @@ public class FilmQueryApp {
 	}
 
 	private void searchFilmByID(Scanner input) {
-		System.out.println("Enter film id: ");
+		System.out.print("Please enter a Film ID: ");
 		int filmID = 0;
 		
 		try {
@@ -76,9 +76,9 @@ public class FilmQueryApp {
 		Film film = db.findFilmById(filmID);
 
 		if (film == null) {
-			System.out.println("Sorry, film ID was not found.");
+			System.out.println("Sorry, the Film ID was not found.");
 		} else {
-			System.out.println(film);
+			System.out.println(film.toStringFilmByID());
 		}
 		startUserInterface(input);
 	}

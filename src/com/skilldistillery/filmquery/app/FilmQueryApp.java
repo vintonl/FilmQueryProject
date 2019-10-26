@@ -29,8 +29,8 @@ public class FilmQueryApp {
 
 	private void startUserInterface(Scanner input) {
 		System.out.println("Please choose from the following?");
-		System.out.println("\t1. Look up a film by its ID.");
-		System.out.println("\t2. Look up a film by a search keyword.");
+		System.out.println("\t1. Lookup a film by its ID.");
+		System.out.println("\t2. Lookup a film by a search keyword.");
 		System.out.println("\t3. Exit the application.");
 		System.out.print("Enter here: ");
 

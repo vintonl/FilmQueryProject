@@ -89,7 +89,7 @@ public class FilmQueryApp {
 			for (Actor actor : actors) {
 				sb.append(actor.getFirstName()).append(" ").append(actor.getLastName()).append(", ");
 			}
-			if (sb.length() > 2) {
+			if (sb.length() > 1) {
 				System.out.println("Actors: " + sb.delete(sb.length() - 2, sb.length() - 1));
 				sb.delete(0, sb.length() - 1);
 			} else {
@@ -120,7 +120,7 @@ public class FilmQueryApp {
 				for (Actor actor : actors) {
 					sb.append(actor.getFirstName()).append(" ").append(actor.getLastName()).append(", ");
 				}
-				if (sb.length() > 2) {
+				if (sb.length() > 1) {
 					System.out.println("Actors:" + sb.delete(sb.length() - 2, sb.length() - 1));
 					sb.delete(0, sb.length() - 1);
 				} else {

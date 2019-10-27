@@ -21,7 +21,7 @@ public class FilmQueryApp {
 	private void launch() {
 		Scanner input = new Scanner(System.in);
 
-		System.out.println("Welcome");
+		System.out.println("Welcome to the FilmQueryApp");
 		startUserInterface(input);
 
 		input.close();
@@ -30,7 +30,7 @@ public class FilmQueryApp {
 	private void startUserInterface(Scanner input) {
 		System.out.println("Please choose from the following?");
 		System.out.println("\t1. Lookup a film by its ID.");
-		System.out.println("\t2. Lookup a film by a search keyword.");
+		System.out.println("\t2. Lookup a film by a keyword searching the title/description.");
 		System.out.println("\t3. Exit the application.");
 		System.out.print("Enter here: ");
 
@@ -89,7 +89,13 @@ public class FilmQueryApp {
 			for (Actor actor : actors) {
 				sb.append(actor.getFirstName()).append(" ").append(actor.getLastName()).append(", ");
 			}
-			System.out.println("Actors: " + sb.delete(sb.length() - 2, sb.length() - 1));
+			if (sb.length() > 2) {
+				System.out.println("Actors: " + sb.delete(sb.length() - 2, sb.length() - 1));
+				sb.delete(0, sb.length() - 1);
+
+			} else {
+				System.out.println("Actors: none listed in database");
+			}
 		}
 
 		System.out.println();
@@ -97,8 +103,9 @@ public class FilmQueryApp {
 	}
 
 	private void searchByKeyword(Scanner input) {
-		System.out.print("Please enter a keyword: ");
+		System.out.print("Please enter a keyword to search the film database: ");
 		String keyword = input.nextLine();
+		System.out.println();
 
 		List<Film> films = db.findFilmByKeyword(keyword);
 
@@ -114,8 +121,14 @@ public class FilmQueryApp {
 				for (Actor actor : actors) {
 					sb.append(actor.getFirstName()).append(" ").append(actor.getLastName()).append(", ");
 				}
-				System.out.println("Actors: " + sb.delete(sb.length() - 2, sb.length() - 1));
-				sb.delete(0, sb.length() - 1);
+				if (sb.length() > 2) {
+					System.out.println("Actors: " + sb.delete(sb.length() - 2, sb.length() - 1));
+					sb.delete(0, sb.length() - 1);
+
+				} else {
+					System.out.println("Actors: none listed in database");
+				}
+
 				System.out.println();
 			}
 		}

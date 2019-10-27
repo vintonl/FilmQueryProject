@@ -59,7 +59,6 @@ public class FilmQueryApp {
 			startUserInterface(input);
 			break;
 		}
-
 	}
 
 	private void searchFilmByID(Scanner input) {
@@ -160,8 +159,6 @@ public class FilmQueryApp {
 
 		switch (choice) {
 		case 1:
-//			System.out.println();
-//			startUserInterface(input);
 			break;
 		case 2:
 			seeAllDetails(filmID);
@@ -175,7 +172,6 @@ public class FilmQueryApp {
 			seeAllDetailsMenu(input, filmID);
 			break;
 		}
-
 	}
 
 	private void seeAllDetails(int filmID) {

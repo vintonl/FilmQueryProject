@@ -92,7 +92,6 @@ public class FilmQueryApp {
 			if (sb.length() > 2) {
 				System.out.println("Actors: " + sb.delete(sb.length() - 2, sb.length() - 1));
 				sb.delete(0, sb.length() - 1);
-
 			} else {
 				System.out.println("Actors: none listed in database");
 			}
@@ -122,9 +121,8 @@ public class FilmQueryApp {
 					sb.append(actor.getFirstName()).append(" ").append(actor.getLastName()).append(", ");
 				}
 				if (sb.length() > 2) {
-					System.out.println("Actors: " + sb.delete(sb.length() - 2, sb.length() - 1));
+					System.out.println("Actors:" + sb.delete(sb.length() - 2, sb.length() - 1));
 					sb.delete(0, sb.length() - 1);
-
 				} else {
 					System.out.println("Actors: none listed in database");
 				}

@@ -50,6 +50,7 @@ public class FilmQueryApp {
 			searchByKeyword(input);
 			break;
 		case 3:
+			System.out.println();
 			System.out.println("Thank you, and have a great one.");
 			System.exit(0);
 			break;
@@ -95,6 +96,8 @@ public class FilmQueryApp {
 			} else {
 				System.out.println("Actors: none listed in database");
 			}
+			System.out.println();
+			seeAllDetailsMenu(input, filmID);
 		}
 
 		System.out.println();
@@ -133,5 +136,60 @@ public class FilmQueryApp {
 
 		System.out.println();
 		startUserInterface(input);
+	}
+
+	private void seeAllDetailsMenu(Scanner input, int filmID) {
+		System.out.println("Would you like to...");
+		System.out.println("\t1. Return to the main menu.");
+		System.out.println("\t2. View all film details.");
+		System.out.print("Please enter your choice (1 or 2): ");
+
+		int choice = 0;
+
+		try {
+			choice = input.nextInt();
+		} catch (InputMismatchException e) {
+			input.nextLine();
+
+			System.err.println("Sorry, your input was not a number.");
+			System.out.println();
+			seeAllDetailsMenu(input, filmID);
+		} finally {
+			input.nextLine();
+		}
+
+		switch (choice) {
+		case 1:
+//			System.out.println();
+//			startUserInterface(input);
+			break;
+		case 2:
+			seeAllDetails(filmID);
+			System.out.println();
+			startUserInterface(input);
+			break;
+		default:
+			System.out.println();
+			System.err.println("Sorry, your input was not 1 or 2. Please try again.");
+			System.out.println();
+			seeAllDetailsMenu(input, filmID);
+			break;
+		}
+
+	}
+
+	private void seeAllDetails(int filmID) {
+		Film film = db.findFilmById(filmID);
+		List<Actor> actors = db.findActorsByFilmId(filmID);
+		StringBuilder sb = new StringBuilder();
+
+		System.out.println();
+
+		System.out.println(film.toString());
+		for (Actor actor : actors) {
+			sb.append(actor.getFirstName()).append(" ").append(actor.getLastName()).append(", ");
+		}
+
+		System.out.println("Actors: " + sb.delete(sb.length() - 2, sb.length() - 1));
 	}
 }

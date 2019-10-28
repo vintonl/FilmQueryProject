@@ -37,22 +37,4 @@ class DatabaseAccessTests {
 		assertNotNull(f);
 	}
 
-//	@Test
-//	@DisplayName("Test null: findFilmByKeyword with invalid keyword returns null")
-//	void test3() {
-//		List<Film> f = db.findFilmByKeyword("ggggggggggggggggggg");
-//		for (Film film : f) {
-//			assertNull(film);
-//		}
-//	}
-//	
-//	@Test
-//	@DisplayName("Test not null: findFilmByKeyword with valid keyword returns data")
-//	void test4() {
-//		List<Film> f = db.findFilmByKeyword("gggggggggggggggggg");
-//		for (Film film : f) {
-//			assertNotNull(film);
-//		}
-//	}
-
 }
